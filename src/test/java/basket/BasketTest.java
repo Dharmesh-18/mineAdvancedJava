@@ -14,7 +14,7 @@ class BasketTest {
     Item item = new Item(100, 10, 5, true);
     Basket basket = new Basket(Collections.singletonList(item));
 
-    float totalPrice = basket.getTotalPrice(item);
+    float totalPrice = item.getTotalPrice();
     assertEquals(105.0, totalPrice, 0.2);
   }
 

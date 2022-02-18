@@ -3,20 +3,27 @@ package cleancode.comments;
 public class Matcher {
   public Matcher() {}
 
-  public boolean match(int[] expected, int[] actual,
-                       int clipLimit, int delta) {
+  public boolean match(int[] expected, int[] group,
+                       int maxAllowedValues, int permittedError) {
 // Clip "too-large" values
-    for (int i1 = 0; i1 < actual.length; i1++)
-      if (actual[i1] > clipLimit)
-        actual[i1] = clipLimit;
+
+    clipTooLargeValues(group, maxAllowedValues);
+
 // Check for length differences
-    if (actual.length != expected.length)
+    if (group.length != expected.length)
       return false;
-// Check that each entry is within expected +/- delta
-    for (int i = 0; i < actual.length; i++)
-      if (Math.abs(expected[i] - actual[i]) > delta)
+
+// Check that each entry is within expected error range
+    for (int i = 0; i < group.length; i++)
+      if (Math.abs(expected[i] - group[i]) > permittedError)
         return false;
     return true;
+  }
+
+  private void clipTooLargeValues(int[] group, int maxAllowedValues) {
+    for (int item = 0; item < group.length; item++)
+      if (group[item] > maxAllowedValues)
+        group[item] = maxAllowedValues;
   }
 
 }

@@ -1,26 +1,31 @@
 package cleancode.naming;
 
 class Event {
-  private final int d;
-  private final Time t;
+  public static final int SATURDAY = 6;
+  public static final int SUNDAY = 0;
+  public static final int START_OF_DAY = 8;
+  public static final int END_OF_DAY = 18;
 
-  public Event(int d, Time t) {
-    this.d = d;
-    this.t = t;
+  private final int weekDay;
+  private final Time eventTime;
+
+  public Event(int weekDay, Time time) {
+    this.weekDay = weekDay;
+    this.eventTime = time;
   }
-  public int getDay() {
-    return d;
+  public int getWeekDay() {
+    return weekDay;
   }
 
   public Time getTime() {
-    return t;
+    return eventTime;
   }
 
-  public boolean canApply() {
-    if (this.getDay() == 6 || this.getDay() == 0) {
+  public boolean isDuringWorkingHours() {
+    if (this.getWeekDay() == SATURDAY || this.getWeekDay() == SUNDAY) {
       return false;
     } else {
-      return (this.getTime().getHour() >= 8 && this.getTime().getHour() < 18);
+      return (this.getTime().getHour() >= START_OF_DAY && this.getTime().getHour() < END_OF_DAY);
     }
   }
 }

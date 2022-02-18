@@ -9,5 +9,17 @@ public class DeadLock {
      * TODO: Create two runnable and thread. Call the first method inside first runnable
      * TODO: and second method inside the second runnable. Start both the threads and join
      */
+
+    Runnable runnable1 = call::first;
+
+    Runnable runnable2 = call::second;
+
+    Thread t1 = new Thread(runnable1);
+    Thread t2 = new Thread(runnable2);
+    t1.start();
+    t2.start();
+
+    t1.join();
+    t2.join();
   }
 }

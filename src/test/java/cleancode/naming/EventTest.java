@@ -13,22 +13,23 @@ public class EventTest {
     Time t = new Time(10);
     Event e = new Event(4, t);
 
-    assertTrue(e.canApply());
+
+    assertTrue(e.isDuringWorkingHours());
   }
 
   @Test public void
-  Should_return_false_when_the_event_occoured_after_working_hours() {
+  Should_return_false_when_the_event_occured_after_working_hours() {
     Time t = new Time(20);
     Event e = new Event(4, t);
 
-    assertFalse(e.canApply());
+    assertFalse(e.isDuringWorkingHours());
   }
 
   @Test public void
-  Should_return_false_when_the_event_occoured_during_working_hours_in_non_working_day() {
+  Should_return_false_when_the_event_occured_during_working_hours_in_non_working_day() {
     Time t = new Time(20);
     Event e = new Event(6, t);
 
-    assertFalse(e.canApply());
+    assertFalse(e.isDuringWorkingHours());
   }
 }

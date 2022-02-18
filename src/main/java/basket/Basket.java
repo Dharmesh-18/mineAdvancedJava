@@ -15,16 +15,16 @@ public class Basket {
     float basketTotal = 0.0f;
     while(iterator.hasNext()) {
       Item item = iterator.next();
-      basketTotal = basketTotal + getTotalPrice(item);
+      basketTotal = basketTotal + item.getTotalPrice();
     }
     return basketTotal;
   }
 
-  public float getTotalPrice(Item i) {
-    float price = i.getPrice() + i.getTax();
-    if (i.isOnSale())
-      price = price - i.getSaleDiscount();
-    return price;
-  }
+//  public float getTotalPrice(Item i) {
+//    float price = i.getPrice() + i.getTax();
+//    if (i.isOnSale())
+//      price = price - i.getSaleDiscount();
+//    return price;
+//  }
 }
 
